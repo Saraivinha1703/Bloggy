@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
-import { request, gql } from 'graphql-request';
+import { useState, useEffect } from 'react';
 import { PostCard } from '../../../components/PostCard';
+import { client } from '../../../lib/client-urql';
 
 const query = gql`
   query Query {
@@ -23,7 +23,7 @@ type PostProps = {
   title: string;
   content: {
     raw: {
-      children: [{ type: string; children: { text: string }[] }];
+      children: [{ type: string; children: { type: string; text: string }[] }];
     };
   };
   author: {
@@ -36,23 +36,19 @@ type PostProps = {
 
 export function Welcome() {
   const [data, setData] = useState<PostProps[]>([]);
-  const dataMemo = useMemo(() => ({ data }), [data]);
 
-  request<{ posts: PostProps[] }>(
-    'https://api-eu-west-2.hygraph.com/v2/clozwpj9i09ga01ujeh3xeqfl/master',
-    query
-  ).then(({ posts }) => setData(posts));
+  useEffect(() => {}, []);
 
   return (
     <div>
       <div className="flex flex-col items-center gap-y-5 my-20">
-        {dataMemo.data.map((post, index) => {
+        {data.map((post, index) => {
           return (
             <PostCard
               key={index}
               authorName={post.author.name}
               avatarUrl={post.author.avatar.url}
-              content={post.content.raw.children[0].children[0].text}
+              content={post.content.raw.children}
               title={post.title}
             />
           );

@@ -2,7 +2,7 @@ type PostCardProps = {
   authorName: string;
   avatarUrl: string;
   title: string;
-  content: string;
+  content: [{ type: string; children: { text: string }[] }];
 };
 
 export function PostCard({
@@ -24,7 +24,9 @@ export function PostCard({
       </div>
       <p className="text-center my-3 font-bold text-2xl">{title}</p>
       <div className="bg-zinc-200 p-4 mt-10 rounded-lg">
-        <p className="text-lg font-light">{content}</p>
+        {content.map(({ _, children }) => {
+          return <p className="text-lg font-light">{children[0].text}</p>;
+        })}
       </div>
     </div>
   );
