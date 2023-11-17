@@ -15,7 +15,7 @@ export const ProtectedLayout = ({ routes }: ProtectedLayoutProps) => {
 
   return (
     <div>
-      <nav>
+      <nav className="flex justify-evenly p-3 bg-zinc-300">
         {routes.map(route => {
           return (
             <Link key={route.id} to={route.path}>
