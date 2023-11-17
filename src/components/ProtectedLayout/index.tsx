@@ -14,11 +14,15 @@ export const ProtectedLayout = ({ routes }: ProtectedLayoutProps) => {
   }
 
   return (
-    <div>
-      <nav className="flex justify-evenly p-3 bg-zinc-300">
+    <div className="h-screen bg-zinc-200">
+      <nav className="flex justify-evenly p-5 bg-gradient-to-t from-purple-600 to-purple-400 shadow-md shadow-black/20 transition-all duration-300 hover:bg-gradient-to-tr hover:shadow-lg">
         {routes.map(route => {
           return (
-            <Link key={route.id} to={route.path}>
+            <Link
+              className="text-2xl font-light text-violet-100 hover:text-[1.65rem] transition-all duration-200"
+              key={route.id}
+              to={route.path}
+            >
               {route.title}
             </Link>
           );
