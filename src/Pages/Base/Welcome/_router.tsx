@@ -1,34 +1,27 @@
 import { Route, Routes } from 'react-router-dom';
-import { Welcome } from '.';
-import { Nested } from './Nested';
-import { AnotherNested } from './AnotherNested';
+import { Posts } from '.';
+import { Profile } from './Profile';
 import { ProtectedLayout } from '../../../components/ProtectedLayout';
 
 const mainRoutes = [
   {
     id: '1',
     path: '',
-    title: 'Welcome',
+    title: 'Posts',
   },
   {
     id: '2',
-    path: 'Nested',
-    title: 'Nested',
-  },
-  {
-    id: '3',
-    path: 'AnotherNested',
-    title: 'Another Nested',
+    path: 'Profile',
+    title: 'Profile',
   },
 ];
 
-export function WelcomeRouter() {
+export function MainRouter() {
   return (
     <Routes>
       <Route path="/*" element={<ProtectedLayout routes={mainRoutes} />}>
-        <Route index element={<Welcome />} />
-        <Route path="Nested" element={<Nested />} />
-        <Route path="AnotherNested" element={<AnotherNested />} />
+        <Route index element={<Posts />} />
+        <Route path="Profile" element={<Profile />} />
       </Route>
     </Routes>
   );

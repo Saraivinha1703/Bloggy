@@ -14,7 +14,7 @@ export const ProtectedLayout = ({ routes }: ProtectedLayoutProps) => {
   }
 
   return (
-    <div className="h-screen bg-zinc-200">
+    <div>
       <nav className="flex justify-evenly p-5 bg-gradient-to-t from-purple-600 to-purple-400 shadow-md shadow-black/20 transition-all duration-300 hover:bg-gradient-to-tr hover:shadow-lg">
         {routes.map(route => {
           return (
