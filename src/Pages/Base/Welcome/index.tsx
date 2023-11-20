@@ -1,26 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PostCard } from '../../../components/PostCard';
 import { client } from '../../../lib/client-urql';
-import { gql } from 'urql';
-
-const query = gql`
-  query {
-    posts {
-      id
-      title
-      content {
-        raw
-      }
-      author {
-        id
-        name
-        avatar {
-          url
-        }
-      }
-    }
-  }
-`;
+import { GET_POSTS } from '../../../graphql/queries/posts';
 
 type PostProps = {
   id: string;
@@ -43,7 +24,7 @@ export function Posts() {
   const [data, setData] = useState<PostProps[]>([]);
 
   useEffect(() => {
-    client.query(query, {}).then(res => setData(res.data.posts));
+    client.query(GET_POSTS, {}).then(res => setData(res.data.posts));
   }, []);
 
   return (
