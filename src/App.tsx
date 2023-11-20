@@ -6,6 +6,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { AuthRouter } from './Pages/Authentication/_router';
 import { BaseRouter } from './Pages/Base/_router';
 import { client } from './lib/client-urql';
+import { AppRouteNames } from './AppRoutes';
 
 function App() {
   return (
@@ -14,15 +15,15 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route
-              path="/"
+              path={AppRouteNames.root}
               element={
                 <ProtectedRoute>
                   <HelloWorld />
                 </ProtectedRoute>
               }
             />
-            <Route path="/Auth/*" element={<AuthRouter />} />
-            <Route path="/Base/*" element={<BaseRouter />} />
+            <Route path={AppRouteNames.auth} element={<AuthRouter />} />
+            <Route path={AppRouteNames.base} element={<BaseRouter />} />
           </Routes>
         </AuthProvider>
       </Provider>

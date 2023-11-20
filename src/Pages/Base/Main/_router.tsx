@@ -2,16 +2,17 @@ import { Route, Routes } from 'react-router-dom';
 import { Posts } from '.';
 import { Profile } from './Profile';
 import { ProtectedLayout } from '../../../components/ProtectedLayout';
+import { MainRoutesNames } from './MainRoutes';
 
 const mainRoutes = [
   {
     id: '1',
-    path: '',
+    path: MainRoutesNames.root,
     title: 'Posts',
   },
   {
     id: '2',
-    path: 'Profile',
+    path: MainRoutesNames.profile,
     title: 'Profile',
   },
 ];
@@ -19,9 +20,12 @@ const mainRoutes = [
 export function MainRouter() {
   return (
     <Routes>
-      <Route path="/*" element={<ProtectedLayout routes={mainRoutes} />}>
+      <Route
+        path={MainRoutesNames.parent}
+        element={<ProtectedLayout routes={mainRoutes} />}
+      >
         <Route index element={<Posts />} />
-        <Route path="Profile" element={<Profile />} />
+        <Route path={MainRoutesNames.profile} element={<Profile />} />
       </Route>
     </Routes>
   );

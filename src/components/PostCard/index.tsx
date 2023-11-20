@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { MainRoutesNames } from '../../Pages/Base/Main/MainRoutes';
 
 type PostCardProps = {
   authorId: string;
@@ -21,7 +22,10 @@ export function PostCard({
       <button
         className="flex items-center group"
         onClick={() =>
-          navigate('Profile', { replace: true, state: { authorId } })
+          navigate(MainRoutesNames.profile, {
+            replace: true,
+            state: { authorId },
+          })
         }
       >
         <img
